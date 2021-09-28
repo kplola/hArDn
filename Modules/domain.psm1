@@ -63,7 +63,7 @@ Function Set-msDSMachineAccountQuota
           }
     Catch {
             $result = 2
-            $dbgMess += (Get-Date -UFormat "%Y-%m-%d %T ") + "---! ERROR: msDSmachineAccountQuota cloud not be set to $newValue!"    
+            $dbgMess += (Get-Date -UFormat "%Y-%m-%d %T ") + "---! ERROR: msDSmachineAccountQuota could not be set to $newValue!"    
           }
 
     ## Checking the new value.
@@ -159,7 +159,7 @@ Function Set-ADRecycleBin
         
         Try 
         {
-            $NoEchoe = Enable-ADOptionalFeature 'Recycle Bin Feature' -Scope ForestOrConfigurationSet -Target (Get-ADForest).Name -WarningAction SilentlyContinue -Confirm:$false
+            $NoEchoe += Enable-ADOptionalFeature 'Recycle Bin Feature' -Scope ForestOrConfigurationSet -Target (Get-ADForest).Name -WarningAction SilentlyContinue -Confirm:$false
 
             $dbgMess += (Get-Date -UFormat "%Y-%m-%d %T ") + "---> Enable-ADOptionalFeature 'Recycle Bin Feature' -Scope ForestOrConfigurationSet -Target " + (Get-ADForest).Name + ' -WarningAction SilentlyContinue -Confirm:$false'
             $dbgMess += (Get-Date -UFormat "%Y-%m-%d %T ") + "---> Active Directory Recycle Bin is enabled"
@@ -278,7 +278,7 @@ Function Set-SiteLinkNotify
             {
                 try
                 {
-                    $NoEchoe = Set-ADReplicationSiteLink $RepSiteLink -Replace @{'Options'=1} -WarningAction SilentlyContinue
+                    $NoEchoe += Set-ADReplicationSiteLink $RepSiteLink -Replace @{'Options'=1} -WarningAction SilentlyContinue
                     $dbgMess += (Get-Date -UFormat "%Y-%m-%d %T ") + "---> Urgent Replication Options is now enabled with value " + (Get-ADReplicationSiteLink $RepSiteLink.Name -Properties *).options + " for " + $RepSiteLink.Name
                     $Result = 1
                 }

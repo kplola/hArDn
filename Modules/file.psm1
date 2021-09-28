@@ -42,7 +42,7 @@ Function Set-GpoCentralStore
     if (((Get-WMIObject win32_operatingsystem).name -like "*2008*"))
     {
         Import-Module ActiveDirectory
-        $sysVolBasePath = ((net share | ? { $_ -like "SYSVOL*" }) -split " " | ? { $_ -ne "" })[1]
+        $sysVolBasePath = ((net share | Where-Object { $_ -like "SYSVOL*" }) -split " " | Where-Object { $_ -ne "" })[1]
     } else {
         $sysVolBasePath = (Get-SmbShare SYSVOL).path
     }
@@ -58,7 +58,7 @@ Function Set-GpoCentralStore
         $dbgMess += (Get-Date -UFormat "%Y-%m-%d %T ") + "---> Central Store path is not enable yet"
         $dbgMess += (Get-Date -UFormat "%Y-%m-%d %T ") + "---> Robocopy C:\Windows\PolicyDefinitions $sysVolBasePath\$domName\Policies\PolicyDefinitions /MIR (start)"
 
-        $NoEchoe = Robocopy "C:\Windows\PolicyDefinitions" "$sysVolBasePath\$domName\Policies\PolicyDefinitions" /MIR
+        $NoEchoe += Robocopy "C:\Windows\PolicyDefinitions" "$sysVolBasePath\$domName\Policies\PolicyDefinitions" /MIR
             
         $dbgMess += (Get-Date -UFormat "%Y-%m-%d %T ") + "---> Robocopy C:\Windows\PolicyDefinitions $sysVolBasePath\$domName\Policies\PolicyDefinitions /MIR (finish)"
         if ((Get-ChildItem "$sysVolBasePath\$domName\Policies\PolicyDefinitions" -Recurse).count -gt 10)
@@ -401,7 +401,7 @@ Function Set-LapsScripts
     ## Rewriting script file
     foreach ($file in (Get-ChildItem -Path $ScriptDir | Where-Object { $_.Name -like "*.bat"}))
     {
-        $newFile = @()
+        $newFile += @()
         Try {
             (Get-Content $file.fullName) -Replace '%RootDN%',(Get-ADDomain).DnsRoot | Set-Content $File.FullName 
             $dbgMess  += (Get-Date -UFormat "%Y-%m-%d %T ") + "--- ---> rewritten file " + $file.Name + " (success)"

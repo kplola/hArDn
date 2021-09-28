@@ -39,32 +39,23 @@
         <ChildOU>
           <Name>Comptes Services Tier0</Name>
           <Description>Comptes de services a haut privilèges</Description>
+
+          <ChildOU>
+            <Name>Désactivés</Name>
+            <Description>Objets désactivés</Description>
+          </ChildOU>
         </ChildOU>
 				
         <ChildOU>
           <Name>Groupes Administration</Name>
           <Description>Groupes d'administration Tier 1 et Tier 2</Description>
-
-          <ChildOU>
-            <Name>Synchronisation AAD</Name>
-            <Description>Groupes synchronisés avec Azure AD</Description>
-					</ChildOU>
 				</ChildOU>
 
         <ChildOU>
           <Name>Groupes Administration Tier0</Name>
           <Description>Groupes d'administration Tier 0</Description>
         </ChildOU>
-				
-        <ChildOU>
-          <Name>Serveurs Administration</Name>
-          <Description>Serveurs d'administration Tier 1 et Tier 2</Description>
-        </ChildOU>
-
-        <ChildOU>
-          <Name>Serveurs Administration Tier0</Name>
-          <Description>Serveurs d'administration Tier 0</Description>
-        </ChildOU>
+		
 			</OU>
 
       <!-- CLASS: SMB-ADMIN-EN                                                                                                             -->
@@ -103,11 +94,6 @@
         <ChildOU>
           <Name>Administration Groups</Name>
           <Description>Administration Groups for Tier 1 and Tier 2</Description>
-
-          <ChildOU>
-            <Name>AAD Sync</Name>
-            <Description>Azure AD synchronized groups</Description>
-          </ChildOU>
 				</ChildOU>
 
         <ChildOU>
@@ -115,15 +101,6 @@
           <Description>Administration Groups for Tier 0</Description>
         </ChildOU>
 
-        <ChildOU>
-          <Name>Admninistration Servers</Name>
-          <Description>Administration Servers Tier 1 and Tier 2</Description>
-        </ChildOU>
-
-        <ChildOU>
-          <Name>Administration Servers (Tier 0)</Name>
-          <Description>Administration Servers for Tier 0</Description>
-        </ChildOU>
 			</OU>
 
       <!-- CLASS: PROVISIONNING-FR                                                                                                         -->
@@ -623,7 +600,7 @@
       <TaskDescription>Update `(AD Schema` for `[LAPS` and add `(PShell add-on`</TaskDescription>
     </Id>
 
-    <!-- LAPS DEPLOYMENT SCRIPT UDATE                                                                                                      -->
+    <!-- LAPS DEPLOYMENT SCRIPT UPDATE                                                                                                      -->
     <Id Number="135" Name="Update LAPS deployment scripts">
       <CallingFunction>Set-LapsScripts</CallingFunction>
       <!-- Parameter: use NETLOGON or SYSVOL for a dynamic location. Else enter the UNC Path                                               -->

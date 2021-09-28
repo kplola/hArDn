@@ -38,8 +38,7 @@
 		</Directory>
 		<Directory name="Inputs"/>
 		<Directory name="Inputs\GroupPolicies">
-			<File>dev.lab132.local.migtable</File>
-			<File>dev.lab132.local.preftable</File>
+		
     </Directory>
     <Directory name="Inputs\GroupPolicies\WmiFilters"/>
 		<Directory name="Inputs\LocalAdminPwdSolution"/>
@@ -61,7 +60,7 @@
 			<File>groupPolicy.psm1</File>
       <File>object.psm1</File>
 			<File>organizationalUnit.psm1</File>
-		</Directory>
+	</Directory>
     <Directory NAME="Outputs"/>
     <Directory name="Tools"/>
     <Directory name="Tools\KeePass-2.48.1">
